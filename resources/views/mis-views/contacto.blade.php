@@ -4,6 +4,7 @@
 @section('title', 'Contacto')
 
 @section('content')
+<h1>Cambio sencillo en la 002-SegundaBranch para verificar si funciono correctamente</h1>
     <form method="POST">
         @csrf
         <label for="nombre">Nombre:</label> <input type="text" id="nombre" name="nombre"><br/>
