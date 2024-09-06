@@ -1,7 +1,6 @@
 @extends('layout')
-
 @section('title', 'Bienvenido a Mi Tienda')
-
+<p> con locale: {{ __('messages.welcome', ['name' => 'dayle']) }} </p>
 @section('content')
     <h2>Nuestros Productos</h2>
 
