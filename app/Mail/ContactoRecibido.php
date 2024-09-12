@@ -13,15 +13,15 @@ use Illuminate\Queue\SerializesModels;
 class ContactoRecibido extends Mailable
 {
     use Queueable, SerializesModels;
+
     private $contacto;
+
     /**
      * Create a new message instance.
      */
     public function __construct($contacto)
     {
-        
         $this->contacto = $contacto;
-        //
     }
 
     /**
@@ -33,7 +33,8 @@ class ContactoRecibido extends Mailable
             from: new Address('taracenacarlos@umes.edu.gt', 'Formulario de Contacto'), 
             to: [new Address($this->contacto['email'], $this->contacto['nombre'])],
             replyTo: [new Address('barqueromauricio@umes.edu.gt', 'Luis')],
-            subject: 'Contacto Recibido',
+            // Usamos la traducción para el asunto
+            subject: __('messages.message_received'),
         );
     }
 
@@ -44,7 +45,8 @@ class ContactoRecibido extends Mailable
     {
         return new Content(
             view: 'emails.contactado',
-            with: $this->contacto,
+            // Pasamos la variable nombre a la vista
+            with: ['nombre' => $this->contacto['nombre']],
         );
     }
 
