@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Mail\ContactoRecibido;
 use Illuminate\Support\Facades\Mail;
+use App\Models\Contact;
 
 class ContactoController extends Controller
 {
@@ -18,6 +19,11 @@ class ContactoController extends Controller
             'mensaje' => 'required',
         ]);
         
+
+        $input = $request->input();
+        $input['publicidad'] = isset($input['publicidad']);
+        Contact::create($input);
+
         //enviar mensaje
         Mail::send(new ContactoRecibido($request->input()));
         
